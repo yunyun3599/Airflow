@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+    airflow:
+        image: yoonjae/airflow:2.1.4-py3.8
+        container_name: airflow
+        build:
+            context: .
+        hostname: airflow
+        ports:
+            - "8080:8080"
+        entrypoint: "/temp/entrypoint.sh"
+        volumes:
+            - .:/opt/airflow/dags
