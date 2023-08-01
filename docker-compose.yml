@@ -12,3 +12,9 @@ services:
         entrypoint: "/temp/entrypoint.sh"
         volumes:
             - .:/opt/airflow/dags
+        networks:
+            - airflow-network
+
+networks:
+  airflow-network:
+    external: true

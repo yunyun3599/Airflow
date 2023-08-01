@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  events-api:
+    build: .
+    image: yoonjae/events-api
+    container_name: events-api
+    ports:
+      - "5555:5000"
+    networks:
+      - airflow-network
+
+networks:
+  airflow-network:
+    external: true
