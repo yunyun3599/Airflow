@@ -59,10 +59,10 @@ def events():
     events = app.config.get("events")
 
     if start_date is not None:
-        events = events.loc(events["date"] >= start_date)
+        events = events.loc[events["date"] >= start_date]
 
     if end_date is not None:
-        events = events.loc(events["date"] < end_date)
+        events = events.loc[events["date"] < end_date]
 
     return jsonify(events.to_dict(orient="records"))
 
