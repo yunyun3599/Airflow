@@ -73,3 +73,24 @@ dag = DAG(
     end_date=datetime.datetime(year=2023, month=7, day=29)
 )
 ```
+
+# execution_date 관련 매개 변수
+- execution_date: DAG를 시작하는 시간의 특정 날짜가 아니라 스케줄 간격으로 실행되는 시작 시간을 나타내는 타임 스탬프
+- next_execution_date: 스케줄 간격의 종료 시간
+- previous_execution_date: 과거의 스케줄 간격의 시작을 정의
+
+
+|     |     이전 실행 시간     |       실행일        | 다음 실행일 <br/>(=현재시점) |
+|:---:|:----------------:|:----------------:|:-------------------:|
+| 날짜  | 2019-01-02 00:00 | 2019-01-03 00:00 |  2019-01-04 00:00   |
+
+
+execution_date를 특정 형태의 문자열로 제공하는 매개 변수
+- `ds`: `YYYY-MM-DD`
+- `ds_nodash`: `YYYYMMDD`
+- 마찬가지로 `next_ds`, `next_ds_nodash`, `prev_ds`, `prev_ds_nodash` 등도 사용 가능  
+
+# Jinja Template
+`{{variable_name}}` 구문 
+> Airflow의 특정 매개 변수 중 하나를 참조하기 위해 Airflow의 Jinja 템플릿 구문을 사용하는 형식  
+
