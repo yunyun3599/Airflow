@@ -5,6 +5,8 @@ services:
     build: .
     image: yoonjae/events-api
     container_name: events-api
+    environment:
+      PYTHONUNBUFFERED: 1
     ports:
       - "5555:5000"
     networks:

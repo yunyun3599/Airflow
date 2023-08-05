@@ -48,7 +48,7 @@ def _generate_events_for_day(date):
 
 
 app = Flask(__name__)
-app.config["events"] = _generate_events(end_date=date(year=2023, month=5, day=1))
+app.config["events"] = _generate_events(end_date=date(year=2023, month=8, day=1))
 
 
 @app.route("/events")
@@ -57,12 +57,17 @@ def events():
     end_date = _str_to_datetime(request.args.get("end_date", None))
 
     events = app.config.get("events")
+    print("before filtered by date", events.shape)
 
     if start_date is not None:
+        print("start_date:", start_date)
         events = events.loc[events["date"] >= start_date]
 
     if end_date is not None:
+        print("end_date:", end_date)
         events = events.loc[events["date"] < end_date]
+
+    print("after filtered by date", events.shape)
 
     return jsonify(events.to_dict(orient="records"))
 
